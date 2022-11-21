@@ -12,7 +12,7 @@
 void iniciartTable(Palavra t[]);
 int funcaoConverter(char palavra[]);
 int funcaoHash(int chave);
-void inserir(Palavra p[]);
+void inserirDataFile(Palavra table[]);
 int busca(int t[], int chave);
 int imprimir(int t[]);
 

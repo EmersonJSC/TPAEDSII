@@ -31,12 +31,12 @@ int funcaoHash(int chave){
     return chave % TAM;
 }
 
-void inserir(Palavra p[]){
-    // int id = funcaoConverter(p->palavra);
-    printf("%s", p->palavra);
-    // while(t[id]){
-    //     id = funcaoHash(id+1);
-    // }
-    // t[id] = palavra;
+void inserirDataFile(Palavra table[]){
+    char entradaPalavra[20] = "susurro"; //inserir aqui pra pegar a palavra do arquivo
+    int id = funcaoConverter(entradaPalavra);
+    while(table[id].palavra){
+        id = funcaoHash(id+1);
+    }
+    table[id].palavra = *entradaPalavra;
 }
 

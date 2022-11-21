@@ -1,17 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../modules/hash.h"
-
+#include "hash.h"
+#include "words.h"
 
 
 int main(void){
    
    Palavra table[TAM];
-   
-   iniciartTable(table);
-   inserir(table);
-   // inserir(table,"susuro");
+
+   // abrir_input();
+   readInput();
+   // iniciartTable(table);
+   // inserirDataFile(table);
      
 }
 
