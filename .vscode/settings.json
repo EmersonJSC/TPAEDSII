@@ -1,10 +1,8 @@
 {
     "files.associations": {
-        "func.h": "c",
-        "stdlib.h": "c",
-        "hash.h": "c",
         "stdio.h": "c",
-        "words.h": "c",
-        "string.h": "c"
+        "func.h": "c",
+        "string.h": "c",
+        "ctype.h": "c"
     }
 }
