@@ -13,7 +13,7 @@ int pegar_tamanho_pesquisa (){
     char linha[100];
 
     pesquisa_txt = fopen("../data/pesquisa.txt", "r");  
-
+     //tratamento de erro
     if(pesquisa_txt == NULL)
         printf("Problema ao Abrir arquivo");
 
@@ -46,6 +46,7 @@ void ler_inserir_pesquisa(Palavra *table, int tam){
     pesquisa_txt = fopen("../data/pesquisa.txt", "r"); 
     if(pesquisa_txt == NULL)
         printf("Problema ao Abrir arquivo");
+    
     int i=0;
     while (!feof(pesquisa_txt))
     {   
@@ -60,6 +61,19 @@ void ler_inserir_pesquisa(Palavra *table, int tam){
         }
     }
     
+}
+
+void ler_buscar_input(){
+    FILE *input_txt;
+    char linha[20];
+    int linhas=0;
+
+    input_txt = fopen("../data/input.txt", "r");  
+    //tratamento de erro
+    if(input_txt == NULL)
+    printf("Problema ao Abrir arquivo");
+
+   
 }
 
 // HASH TABLE FUNCTIONS

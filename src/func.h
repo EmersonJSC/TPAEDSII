@@ -11,6 +11,7 @@ typedef struct
 int pegar_tamanho_pesquisa ();
 void converter_minusculo(char *palavra);
 void ler_inserir_pesquisa(Palavra *table, int tam);
+void ler_buscar_input();
 
 // HASH TABLE FUNCTION
 void inserir_hashTable(Palavra p[], char* str, int tam);
