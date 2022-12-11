@@ -51,7 +51,6 @@ void ler_inserir_pesquisa(Palavra *table, int tam){
     while (!feof(pesquisa_txt))
     {   
         fgets(linha, 100, pesquisa_txt);
-        int linhas=0;
         if(linha){
             converter_minusculo(linha);
             if(i >= 1){
@@ -65,14 +64,24 @@ void ler_inserir_pesquisa(Palavra *table, int tam){
 
 void ler_buscar_input(){
     FILE *input_txt;
-    char linha[20];
-    int linhas=0;
-
+    char *lim, linha[100];
+    int linhas=1;
+    
     input_txt = fopen("../data/input.txt", "r");  
     //tratamento de erro
     if(input_txt == NULL)
     printf("Problema ao Abrir arquivo");
 
+    while(!feof(input_txt)){
+        if(fgets(linha, 81, input_txt)){
+            lim = strtok(linha, "!,.-");
+            while(lim){
+                printf("linha %i: %s \n",linhas, lim);
+                lim = strtok(NULL, "!,. ");
+            }
+            linhas++;
+        }
+    }
    
 }
 
@@ -105,7 +114,7 @@ void inserir_hashTable(Palavra *p, char* str, int tam){
     strcpy(p[id].palavra, str);
 }
 
-char* busca_hashTable(Palavra *p, char* chave, int tam){
+int busca_hashTable(Palavra *p, char* chave, int tam){
     int id = Converter_string_for_hash(chave, tam);
     // Remove o \n no final que atrapalha a comparação.
     int chaveTam = strlen(p[2].palavra);

@@ -9,10 +9,11 @@ int main(void){
     Palavra table[tam];
     char *buscar;
 
-    // iniciar_hashTable(table, tam);
-    // ler_inserir_pesquisa(table, tam);
-    ler_buscar_input();
-    printf("\n");
+    iniciar_hashTable(table, tam);
+    ler_inserir_pesquisa(table, tam);
+    // ler_buscar_input();
+    busca_hashTable(table, 'pedra', tam);
+    
     
 }
 
