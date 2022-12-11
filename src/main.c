@@ -5,15 +5,15 @@
 
 
 int main(void){
+    
     int tam = pegar_tamanho_pesquisa();
     Palavra table[tam];
-    char *buscar;
+    char *buscar, *busca;
 
     iniciar_hashTable(table, tam);
     ler_inserir_pesquisa(table, tam);
-    // ler_buscar_input();
-    busca_hashTable(table, 'pedra', tam);
-    
+    ler_buscar_input(table, tam);
+    imprimir_hashTable(table, tam);
     
 }
 

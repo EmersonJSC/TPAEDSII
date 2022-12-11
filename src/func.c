@@ -54,6 +54,7 @@ void ler_inserir_pesquisa(Palavra *table, int tam){
         if(linha){
             converter_minusculo(linha);
             if(i >= 1){
+                char *lim = strtok(linha, "\n\t ");
                 inserir_hashTable(table, linha, tam);
             }
             i++;
@@ -62,7 +63,7 @@ void ler_inserir_pesquisa(Palavra *table, int tam){
     
 }
 
-void ler_buscar_input(){
+void ler_buscar_input(Palavra *t, int tam){
     FILE *input_txt;
     char *lim, linha[100];
     int linhas=1;
@@ -73,10 +74,12 @@ void ler_buscar_input(){
     printf("Problema ao Abrir arquivo");
 
     while(!feof(input_txt)){
-        if(fgets(linha, 81, input_txt)){
-            lim = strtok(linha, "!,.-");
+        if(fgets(linha, 100, input_txt)){
+            lim = strtok(linha, "!,.- ");
             while(lim){
-                printf("linha %i: %s \n",linhas, lim);
+                converter_minusculo(lim);
+                busca_hashTable(t, lim, tam, linha);
+                
                 lim = strtok(NULL, "!,. ");
             }
             linhas++;
@@ -89,6 +92,8 @@ void ler_buscar_input(){
 void iniciar_hashTable(Palavra *t, int tam){
     for(int i=0; i< tam; i++){
         strcpy(t[i].palavra, "");
+        t[i].rep = 0;
+        t[i].linha = "";
     }
 }
 
@@ -114,32 +119,30 @@ void inserir_hashTable(Palavra *p, char* str, int tam){
     strcpy(p[id].palavra, str);
 }
 
-int busca_hashTable(Palavra *p, char* chave, int tam){
+int busca_hashTable(Palavra *p, char* chave, int tam, int linha){
     int id = Converter_string_for_hash(chave, tam);
-    // Remove o \n no final que atrapalha a comparação.
-    int chaveTam = strlen(p[2].palavra);
-    if(p[2].palavra[chaveTam-1] == '\n') {
-        p[2].palavra[--chaveTam] = 0;
-    };
+    int i = 0;
     // Pesquisa no HashTable.
-    while (strlen(p[id].palavra) > 0)
+    while (i < tam)
     {
         if(strcmp(p[id].palavra, chave) == 0){
-            return p[id].palavra;
+            // printf("%i \n ", p[id].rep);
+            p[id].rep++;
+            return 1;
         }else{
             id = funcao_Hash(id+1, tam);
+            i++;
         }
     }
-    
+    return 0;
 }
-
 void imprimir_hashTable(Palavra *p, int tam){
     // printf("palavra: %s", p[4].palavra);
 
     for(int i =0; i < tam; i++){
-        printf("%d\n", i);
+        // printf("%d:", i);
         if(strlen(p[i].palavra) > 0){
-            printf("%s", p[i].palavra);
+            printf("%i %s \n", p[i].rep ,p[i].palavra);
         }
     }
 }
