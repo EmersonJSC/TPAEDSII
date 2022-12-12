@@ -5,7 +5,9 @@ typedef struct
    {
       char palavra[20];
       int rep;
+      int ultimalinha;
       char linha[100];
+
    } Palavra;
    
 // GERAL FUNCTIONS

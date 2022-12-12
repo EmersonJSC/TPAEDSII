@@ -130,11 +130,11 @@ int busca_hashTable(Palavra *p, char* chave, int tam, int linhas){
         if(strcmp(p[id].palavra, chave) == 0){
             // printf("%i \n ", p[id].rep);
             p[id].rep++;
-            snprintf(new, 40, "%s %d", p[id].linha, linhas);
-            if(new == p[id].linha){
-
+            if(p[id].ultimalinha != linhas){
+                snprintf(new, 40, "%s %d", p[id].linha, linhas);
+                strcpy(p[id].linha, new);
+                p[id].ultimalinha = linhas;
             }
-            strcpy(p[id].linha, new);
 
             return 1;
         }else{
@@ -150,7 +150,7 @@ void imprimir_hashTable(Palavra *p, int tam){
     for(int i =0; i < tam; i++){
         // printf("%d:", i);
         if(strlen(p[i].palavra) > 0){
-            printf("%i %s %s\n", p[i].rep ,p[i].palavra, p[i].linha);
+            printf("%i %s \t %s\n", p[i].rep ,p[i].palavra, p[i].linha);
         }
     }
 }
