@@ -5,9 +5,9 @@ typedef struct
    {
       char palavra[20];
       int rep;
-      char linha[100]
-   }Palavra;
-
+      char linha[100];
+   } Palavra;
+   
 // GERAL FUNCTIONS
 
 int pegar_tamanho_pesquisa ();
@@ -22,7 +22,7 @@ void iniciar_hashTable(Palavra t[], int tam);
 void imprimir_hashTable(Palavra *t, int tam);
 int Converter_string_for_hash(char palavra[], int tam);
 int funcao_Hash(int chave, int tam);
-int busca_hashTable(Palavra *p, char* chave, int tam);
+int busca_hashTable(Palavra *p, char* chave, int tam, int linhas);
 
 
-#endif
+#endif 

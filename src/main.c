@@ -15,5 +15,11 @@ int main(void){
     ler_buscar_input(table, tam);
     imprimir_hashTable(table, tam);
     
+    // char srt1[20] = "oi mundo";
+    // char str[40];
+    // int str2 = 2;
+// 
+    // snprintf(str, 40, "%s %d", srt1, str2);
+    // printf("%s", str);
 }
 
