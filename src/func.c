@@ -78,7 +78,7 @@ void ler_buscar_input(Palavra *t, int tam){
             lim = strtok(linha, "!,.- ");
             while(lim){
                 converter_minusculo(lim);
-                busca_hashTable(t, lim, tam, linha);
+                busca_hashTable(t, lim, tam, linhas);
                 
                 lim = strtok(NULL, "!,. ");
             }
@@ -93,7 +93,7 @@ void iniciar_hashTable(Palavra *t, int tam){
     for(int i=0; i< tam; i++){
         strcpy(t[i].palavra, "");
         t[i].rep = 0;
-        t[i].linha = "";
+        strcpy(t[i].linha, "");
     }
 }
 
@@ -113,21 +113,29 @@ int funcao_Hash(int chave, int tam){
 
 void inserir_hashTable(Palavra *p, char* str, int tam){
     int id = Converter_string_for_hash(str, tam);
+
     while(strlen(p[id].palavra) > 0){
         id = funcao_Hash(id+1, tam);
     }
     strcpy(p[id].palavra, str);
 }
 
-int busca_hashTable(Palavra *p, char* chave, int tam, int linha){
+int busca_hashTable(Palavra *p, char* chave, int tam, int linhas){
     int id = Converter_string_for_hash(chave, tam);
     int i = 0;
+    char new[10];
     // Pesquisa no HashTable.
     while (i < tam)
     {
         if(strcmp(p[id].palavra, chave) == 0){
             // printf("%i \n ", p[id].rep);
             p[id].rep++;
+            snprintf(new, 40, "%s %d", p[id].linha, linhas);
+            if(new == p[id].linha){
+
+            }
+            strcpy(p[id].linha, new);
+
             return 1;
         }else{
             id = funcao_Hash(id+1, tam);
@@ -142,7 +150,7 @@ void imprimir_hashTable(Palavra *p, int tam){
     for(int i =0; i < tam; i++){
         // printf("%d:", i);
         if(strlen(p[i].palavra) > 0){
-            printf("%i %s \n", p[i].rep ,p[i].palavra);
+            printf("%i %s %s\n", p[i].rep ,p[i].palavra, p[i].linha);
         }
     }
 }
